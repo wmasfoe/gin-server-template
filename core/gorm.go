@@ -1,18 +1,17 @@
 package core
 
 import (
-	"fmt"
 	"go-blog-server/global"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"log"
 	"time"
 )
 
-func InitGorm() {
+func InitGorm() *gorm.DB {
 	if global.CONFIG.Mysql.Host == "" {
-		fmt.Println("未配置mysql，退出链接 GORM")
+		global.Log.Warnln("未配置mysql，退出链接 GORM")
+		return nil
 	}
 
 	dsn := global.CONFIG.Mysql.Dsn()
@@ -27,7 +26,7 @@ func InitGorm() {
 		Logger: mysqlLogger,
 	})
 	if err != nil {
-		log.Fatalln(err)
+		global.Log.Fatalln(err)
 	}
 
 	sqlDB, _ := db.DB()
@@ -39,4 +38,6 @@ func InitGorm() {
 	sqlDB.SetConnMaxLifetime(time.Hour * 4)
 
 	global.DB = db
+
+	return db
 }
