@@ -1,17 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"go-blog-server/core"
 	"go-blog-server/global"
+	"go-blog-server/routers"
 )
 
 func main() {
 	core.InitConf()
 	core.InitGorm()
 	core.InitLogger()
+	router := routers.InitRouter()
 
-	fmt.Println(global.CONFIG)
-	fmt.Println(global.DB)
-	global.Log.Info("异常")
+	listenAddr := global.CONFIG.System.Addr()
+	global.Log.Infof("go-blog-server 程序启动：%s", listenAddr)
+	router.Run(listenAddr)
 }
