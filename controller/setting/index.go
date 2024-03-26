@@ -1,10 +1,16 @@
 package setting
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"go-blog-server/model/respModel"
+)
 
 type SettingsController struct {
 }
 
 func (s SettingsController) SettingsInfoView(c *gin.Context) {
-	c.JSON(200, gin.H{"message": "success"})
+	respModel.SuccessWithData(map[string]interface{}{
+		"id": 1,
+	}, c)
+	//respModel.FailWithCode(respModel.SystemError, c)
 }

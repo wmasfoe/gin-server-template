@@ -1,7 +1,6 @@
 package core
 
 import (
-	"fmt"
 	"github.com/sirupsen/logrus"
 	"go-blog-server/config"
 	"go-blog-server/global"
@@ -16,7 +15,7 @@ func InitConf() {
 	c := &config.Config{}
 	yamlConf, err := os.ReadFile(ConfigFile)
 	if err != nil {
-		panic(fmt.Errorf("get config error %v", err))
+		logrus.Errorf("get config error %v", err)
 	}
 	err = yaml.Unmarshal(yamlConf, c)
 	if err != nil {
