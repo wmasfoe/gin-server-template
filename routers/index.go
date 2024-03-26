@@ -7,15 +7,19 @@ import (
 	"go-blog-server/global"
 )
 
+type RouterGroup struct {
+	*gin.RouterGroup
+}
+
 func InitRouter() *gin.Engine {
 	gin.SetMode(global.CONFIG.System.Env)
 	r := gin.Default()
 	r.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
 
-	publicGroup := r.Group("api")
-	publicGroup.GET("/", func(c *gin.Context) {
-		c.String(200, "NB")
-	})
+	ApiRouters := RouterGroup{r.Group("api")}
+
+	//setting 相关接口
+	ApiRouters.SettingRouter()
 
 	return r
 }
