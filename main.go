@@ -2,6 +2,7 @@ package main
 
 import (
 	"go-chat/core"
+	_ "go-chat/docs"
 	"go-chat/global"
 	"go-chat/routers"
 )

@@ -19,3 +19,7 @@ type UserBasic struct {
 	IsLogout   bool
 	DeviceInfo string
 }
+
+func (UserBasic) TableName() string {
+	return "user_basic"
+}
