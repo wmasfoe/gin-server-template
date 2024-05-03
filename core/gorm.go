@@ -1,7 +1,8 @@
 package core
 
 import (
-	"go-blog-server/global"
+	"fmt"
+	"go-chat/global"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -15,6 +16,7 @@ func InitGorm() *gorm.DB {
 	}
 
 	dsn := global.CONFIG.Mysql.Dsn()
+	fmt.Printf("dsn:%v\n", dsn)
 	var mysqlLogger logger.Interface
 	if global.CONFIG.System.Env == "debug" {
 		mysqlLogger = logger.Default.LogMode(logger.Info)

@@ -1,10 +1,11 @@
 mysql:
   host: 127.0.0.1
   port: 3306
-  db: go_blog
+  db: go_chat1
   user: root
-  password: 123456
+  password: 123456789
   log-level: dev
+  config: ?charset=utf8mb4&parseTime=True&loc=Local
 
 system:
   host: 0.0.0.0
@@ -14,7 +15,7 @@ system:
 
 logger:
   level: info
-  prefix: '[blog-server]'
+  prefix: '[go-chat]'
   director: log
   show-line: true
   log-in-console: true
