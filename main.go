@@ -7,10 +7,13 @@ import (
 	"go-chat/routers"
 )
 
-func main() {
+func init() {
 	core.InitConf()
 	core.InitGorm()
 	core.InitLogger()
+}
+
+func main() {
 	router := routers.InitRouter()
 
 	listenAddr := global.CONFIG.System.Addr()
